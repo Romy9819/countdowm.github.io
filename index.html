@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Coutdown for the event</title>
+
+	<h1 style="text-align: center;">Countdown for the event</h1>
+
+	<style type="text/css">
+		span{
+			text-align: center;
+			font-size: 60px;
+		}
+		/*Class which is beautifying countdown*/
+		.multicolor {
+			background-image: linear-gradient(to left, green, blue, orange);
+	        -webkit-background-clip: text;
+	        background-clip: text;
+	        background-clip: text;
+	        color: transparent;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		function countdown() {
+			var now = new Date(); // Current date and time are collected
+			var destinated = new Date("Aug 15, 2021 00:00:00"); // Sheduled date and time are collected
+
+			var distance = destinated - now;
+
+			// Math.floor returns the closest integer 
+
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+ 			var hour = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+ 			var min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+ 			var sec = Math.floor((distance % (1000 * 60)) / 1000);
+
+			document.getElementById('time').innerHTML = days + "d "+ hour + "h " + min + "m " + sec + "s "; // Prints into the given id 'time' 
+			
+			// When the distance = 0 i.e. when current time gets equal to the sheduled time "Happy independence day" is printed instead of the countdown.
+
+			if (distance < 0) {
+				document.getElementById('time').innerHTML = "HAPPY INDEPENDENCE DAY";	
+			}	
+		}
+	</script>
+</head>
+<body onload="countdown();setInterval('countdown()',1000)">
+	<br><br>
+	<center><span id="time" class="multicolor"></span></center>
+</body>
+</html>
